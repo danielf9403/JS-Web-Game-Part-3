@@ -1,14 +1,41 @@
 function newImage(url, left, bottom){
     let image = document.createElement('img')
     image.src = url
-    image.style.position = 'fixed'
-    image.style.left = left + 'px'
-    image.style.bottom = bottom + 'px'
+    // image.style.position = 'fixed'
+    // image.style.left = left + 'px'
+    // image.style.bottom = bottom + 'px'
     document.body.append(image)
     return image
 }
 
-newImage('assets/green-character.gif', 100, 250)
+function move(image) {
+    image.style.position = "fixed";
+    function moveToCoordinates(left, bottom) {
+        image.style.left= left + 'px';
+        image.style.bottom = bottom + 'px';
+    }
+    function enlageChar(height, width) {
+        image.style.width = width + 'px';
+        image.style.height = height + 'px';
+    }
+
+    return {
+        to: moveToCoordinates,
+        Baaa: enlageChar,
+    };
+}
+
+
+
+const imageTest = newImage('assets/green-character.gif');
+const activeImage = move(imageTest);
+activeItem.to(100, 200)
+
+imageTest.addEventListener("click", () => {
+    activeItem.to(400, 400);
+    activeItem.Baaa(400, 500);
+});
+
 newImage('assets/tree.png', 200, 450)
 newImage('assets/pillar.png', 350, 250)
 newImage('assets/pine-tree.png', 450, 350)
@@ -26,6 +53,8 @@ function newItem(url, left, bottom){
     })
     return item
 }
+
+
 
 newItem('assets/sword.png', 500, 555)
 newItem('assets/shield.png', 165, 335)
